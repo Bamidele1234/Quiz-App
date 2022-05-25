@@ -34,7 +34,7 @@ class _QuizPageState extends State<QuizPage> {
     return Column(
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       crossAxisAlignment: CrossAxisAlignment.stretch,
-      children: <Widget>[
+      children: [
         const Expanded(
           flex: 5,
           child: Padding(
@@ -91,7 +91,9 @@ class _QuizPageState extends State<QuizPage> {
             ),
           ),
         ),
-        //TODO: Add a Row here as your score keeper
+        Row(
+          children: const [Icon(Icons.check)],
+        )
       ],
     );
   }
