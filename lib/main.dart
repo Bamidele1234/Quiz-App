@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
-import 'question.dart';
+import 'quiz_brain.dart';
+
+var quizBrain = QuizBrain();
 
 void main() => runApp(const Quizzler());
 
@@ -33,18 +35,6 @@ class QuizPage extends StatefulWidget {
 class _QuizPageState extends State<QuizPage> {
   List<Icon> scoreKeeper = [];
 
-  List<Question> bank = [
-    Question(
-        questionText: 'You can lead a cow down stairs but not up stairs.',
-        questionAnswer: false),
-    Question(
-        questionText:
-            'Approximately one quarter of human bones are in the feet.',
-        questionAnswer: true),
-    Question(questionText: 'A slug\'s blood is green.', questionAnswer: true),
-    Question(questionText: 'I am who I am', questionAnswer: true),
-  ];
-
   int questNum = 0;
 
   @override
@@ -59,7 +49,7 @@ class _QuizPageState extends State<QuizPage> {
             padding: const EdgeInsets.all(10.0),
             child: Center(
               child: Text(
-                bank[questNum].questionText,
+                quizBrain.bank[questNum].questionText,
                 textAlign: TextAlign.center,
                 style: const TextStyle(
                   fontSize: 25.0,
@@ -85,7 +75,7 @@ class _QuizPageState extends State<QuizPage> {
               ),
               onPressed: () {
                 setState(() {
-                  if (bank[questNum].questionAnswer == true) {
+                  if (quizBrain.bank[questNum].questionAnswer == true) {
                     scoreKeeper.add(
                       const Icon(
                         Icons.check,
@@ -123,7 +113,7 @@ class _QuizPageState extends State<QuizPage> {
               ),
               onPressed: () {
                 setState(() {
-                  if (bank[questNum].questionAnswer == false) {
+                  if (quizBrain.bank[questNum].questionAnswer == false) {
                     scoreKeeper.add(
                       const Icon(
                         Icons.check,
