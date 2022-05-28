@@ -1,7 +1,11 @@
 import 'question.dart';
 
 class QuizBrain {
-  List<Question> bank = [
+  int _questNum = 0;
+  int _score = 0;
+
+  /// Encapsulate the list of questions
+  final List<Question> _bank = [
     Question('I am who I am', true),
     Question('Some cats are actually allergic to humans', true),
     Question('You can lead a cow down stairs but not up stairs.', false),
@@ -29,4 +33,23 @@ class QuizBrain {
         'In West Virginia, USA, if you accidentally hit an animal with your car, you are free to take it home to eat.',
         true),
   ];
+
+  void logic() {
+    if (_questNum < _bank.length - 1) {
+      _questNum++;
+    }
+  }
+
+  /// Provide the getters
+  String getQuestionText() => _bank[_questNum].questionText;
+
+  bool getQuestionAns() => _bank[_questNum].questionAnswer;
+
+  bool isFinished() => _questNum == _bank.length - 1;
+
+  void reset() => _questNum = 0;
+  void increase() => _score++;
+
+  int score() => _score;
+  int listSize() => _bank.length;
 }
