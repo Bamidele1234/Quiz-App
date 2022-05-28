@@ -45,7 +45,7 @@ class _QuizPageState extends State<QuizPage> {
           Alert(
                   context: context,
                   title: "FINISHED !",
-                  //onWillPopActive: true,
+                  onWillPopActive: true,
                   desc:
                       "You got ${quizBrain.score()} out of ${quizBrain.listSize()}")
               .show();
