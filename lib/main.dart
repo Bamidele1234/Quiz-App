@@ -14,7 +14,7 @@ class Quizzler extends StatelessWidget {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       home: Scaffold(
-        backgroundColor: Colors.grey.shade900,
+        backgroundColor: Colors.grey.shade800,
         body: const SafeArea(
           child: Padding(
             padding: EdgeInsets.symmetric(horizontal: 15.0, vertical: 10),
@@ -45,29 +45,31 @@ class _QuizPageState extends State<QuizPage> {
           Alert(
                   context: context,
                   title: "FINISHED !",
+                  //onWillPopActive: true,
                   desc:
                       "You got ${quizBrain.score()} out of ${quizBrain.listSize()}")
               .show();
           quizBrain.reset();
           scoreKeeper.clear();
-        }
-        if (quizBrain.getQuestionAns() == ans) {
-          quizBrain.increase();
-          scoreKeeper.add(
-            const Icon(
-              Icons.check,
-              color: Colors.green,
-            ),
-          );
         } else {
-          scoreKeeper.add(
-            const Icon(
-              Icons.close,
-              color: Colors.red,
-            ),
-          );
+          if (quizBrain.getQuestionAns() == ans) {
+            quizBrain.increase();
+            scoreKeeper.add(
+              const Icon(
+                Icons.check,
+                color: Colors.green,
+              ),
+            );
+          } else {
+            scoreKeeper.add(
+              const Icon(
+                Icons.close,
+                color: Colors.red,
+              ),
+            );
+          }
+          quizBrain.logic();
         }
-        quizBrain.logic();
       },
     );
   }
